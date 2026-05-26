@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <h1>Stopwatch</h1>
+    <p>0</p>
+    <button class="start">Start</button>
+    <button class="stop">Stop</button>
+    <button class="reset">Reset</button>
+
+    <script>
+        let p=document.querySelector('p');
+        let start=document.querySelector('.start');
+        let stop=document.querySelector('.stop');
+        let reset=document.querySelector('.reset')
+        let count=0;
+        let id=null;
+        start.addEventListener('click',()=>{
+            start.disabled=true
+            id=setInterval(() => {
+                count++;
+                p.textContent=`${count}`
+            }, 1000, count);
+
+        })
+        
+        stop.addEventListener('click',()=>{
+            start.disabled=false;
+        clearInterval(id)
+    });
+
+    reset.addEventListener('click',()=>{
+            start.disabled=false;
+        clearInterval(id)
+        p.textContent=`0`;
+        count=0;
+    });
+        
+
+
+        
+    </script>
+</body>
+</html>
