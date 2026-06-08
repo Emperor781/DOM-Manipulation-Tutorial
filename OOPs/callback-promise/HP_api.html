@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .outer{
+            display: flex;
+            height: 100vh;
+            width: 100vw;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: space-around;
+
+        }
+        .outer div{
+            background-color: aqua;
+            max-width: 400px;
+            max-height: 600px;
+            box-shadow: 10px;
+            border-radius: 10px;
+            border: 2px solid black;
+            padding: 15px;
+        }
+        img{
+            display: flex;
+            flex-direction: column;
+            justify-self: center;
+            height: 35%;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="outer">
+
+        <div id="1" class="div">
+            
+        </div>
+    
+        <div id="2" class="div">
+             
+        </div>
+    
+        <div id="3" class="div">
+            
+        </div>
+    
+        <div id="4" class="div">
+           
+        </div>
+    
+        <div id="5" class="div">
+               
+        </div>
+    
+        <div id="6" class="div">
+            
+        </div>
+    
+        <div id="7" class="div">
+          
+        </div>
+    
+        <div id="8" class="div">
+            
+        </div>
+    </div>
+    <script>
+        let divs=document.querySelectorAll('.div')
+        async function promise(){
+            let res=await fetch("https://potterapi-fedeperin.vercel.app/en/books");
+            let data=await res.json()
+            console.log(data)
+            let n=0
+            for(let obj of data){
+                // console.log(obj)
+                // divs[n].innerText=obj.title;
+                divs[n].innerHTML=`<h3>Book ${obj.number}: ${obj.title}</h3>
+                <img src="${obj.cover}">
+                <p><b>Synopsis</b>: ${obj.description}</p>
+                <span><b>Original Title</b>: ${obj.originalTitle}
+                <br>
+                <p><b>Release Date:</b> ${obj.releaseDate}</p>
+                <p><b>Pages:</b> ${obj.pages}`;
+                n++;
+                // console.log(divs)
+
+            }
+        }
+        promise()
+    </script>
+</body>
+</html>
